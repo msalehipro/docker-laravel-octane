@@ -18,7 +18,7 @@ RUN docker-php-ext-enable swoole
 
 ENV NODE_PATH "/home/www-data/.npm-global/lib/node_modules"
 
-RUN apt -y install nodejs npm
+RUN apt-get -y install nodejs npm
 
 RUN mkdir "/home/www-data/" && \
     mkdir "/home/www-data/.npm-global/" && \
