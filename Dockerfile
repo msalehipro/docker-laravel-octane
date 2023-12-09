@@ -3,10 +3,11 @@ FROM  php:8.2-cli
 RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install -y nano libicu-dev default-mysql-client libzip-dev unzip libfreetype6-dev libonig-dev libjpeg62-turbo-dev libpng-dev supervisor \
-    && docker-php-ext-install zip exif  sockets bcmath ctype pdo pdo_mysql intl pcntl gd mbstring \
+    && docker-php-ext-install zip exif sockets bcmath ctype pdo pdo_mysql intl pcntl gd mbstring \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && pecl install -o -f redis \
     && rm -rf /tmp/pear \
+    && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-enable redis
 
 # Get latest Composer
