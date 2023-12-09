@@ -2,7 +2,7 @@ FROM  php:8.2-cli
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install -y nano libicu-dev default-mysql-client libzip-dev unzip libfreetype6-dev libonig-dev libjpeg62-turbo-dev libpng-dev supervisor \
+    && apt-get install -y nano ca-certificates curl gnupg libicu-dev default-mysql-client libzip-dev unzip libfreetype6-dev libonig-dev libjpeg62-turbo-dev libpng-dev supervisor \
     && docker-php-ext-install zip exif sockets bcmath ctype pdo pdo_mysql intl pcntl gd mbstring \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && pecl install -o -f redis \
@@ -17,8 +17,10 @@ RUN pecl install swoole
 RUN docker-php-ext-enable swoole
 
 ENV NODE_PATH "/home/www-data/.npm-global/lib/node_modules"
-
-RUN apt-get -y install nodejs npm
+ENV NODE_MAJOR=20
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+RUN apt-get update && apt-get install nodejs -y
 
 RUN mkdir "/home/www-data/" && \
     mkdir "/home/www-data/.npm-global/" && \
