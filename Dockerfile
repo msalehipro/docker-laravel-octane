@@ -22,7 +22,7 @@ pkg-config && \
 rm -rf /var/lib/apt/lists/*
 # ---------- PHP Extensions ----------
 # Configure GD first (before install)
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
 docker-php-ext-install \
 gd \
 zip \
