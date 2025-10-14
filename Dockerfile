@@ -66,7 +66,7 @@ echo 'memory_limit = 2048M'; \
 echo 'upload_max_filesize = 200M'; \
 echo 'post_max_size = 200M'; \
 echo 'max_execution_time = 600'; \
-echo 'max_input_time = 0'; 
+echo 'max_input_time = 0'; \
 } > /usr/local/etc/php/conf.d/99-uploads.ini
 # ---------- Default working directory ----------
 WORKDIR /var/www/html
