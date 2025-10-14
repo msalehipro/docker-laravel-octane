@@ -18,6 +18,7 @@ supervisor \
 # --- Imagick + HEIC support ---
 libmagickwand-dev \
 libheif-dev \
+libwebp-dev \
 pkg-config && \
 rm -rf /var/lib/apt/lists/*
 # ---------- PHP Extensions ----------
